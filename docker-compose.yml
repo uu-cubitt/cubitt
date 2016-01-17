@@ -1,0 +1,14 @@
+db:
+  build: https://github.com/uu-cubitt/cubitt-postgresql.git
+  environment:
+    POSTGRES_PASSWORD: cubitt
+    POSTGRES_USER: cubitt
+    POSTGRES_DB: cubitt
+oauth-service:
+  build: https://github.com/uu-cubitt/cubitt-auth-service.git
+  ports:
+    - "8080:8080"
+  environment:
+      DATABASE_URL: postgres://cubitt:cubitt@db/cubitt
+  links:
+    - db
